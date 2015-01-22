@@ -40,41 +40,41 @@ $(function() {
 		// Replace term from note
 		var note = $('div.note', tr);
 		$(note).text($(note).text().replace('".$term."', ''));
-
-        var dropdown = $('select', tr);
-        var link = document.createElement('a');
-        var input = document.createElement('input');
-
+		
+		var dropdown = $('select', tr);
+		var link = document.createElement('a');
+		var input = document.createElement('input');
+		
 		// Insert html objects and bind events
-        $(dropdown).after(input);
-        $(input).after(link);
-
-        $(link).text(' Lookup 🔎').bind('click', function (event) {
-            $(dropdown).toggle();
-            $(input).toggle().val('').focus();
-        }).css('cursor', 'pointer');
-
-        $(input).attr('class', 'x-form-text x-form-field').hide();
-
+		$(dropdown).after(input);
+		$(input).after(link);
+		
+		$(link).text(' Lookup 🔎').bind('click', function (event) {
+			$(dropdown).toggle();
+			$(input).toggle().val('').focus();
+		}).css('cursor', 'pointer');
+		
+		$(input).attr('class', 'x-form-text x-form-field').hide();
+		
 		// Extract list options from dropdown for jquery autocomplete
-        var list = $(dropdown).children();
-        var x = [];
-
-        for (var i = list.length; i-->0 ;){
+		var list = $(dropdown).children();
+		var x = [];
+		
+		for (var i = list.length; i-->0 ;){
 			x.unshift({
 				value: list[i].innerHTML,
 				code: list[i].value
 			});
 		}
-
-        $(input).ui_autocomplete({
-            source: x,
-            minLength: 1,
-            select: function (event, ui) {
-                $(dropdown).val(ui.item.code);
-                $(link).click();
-            },
-        });
+		
+		$(input).ui_autocomplete({
+			source: x,
+			minLength: 1,
+			select: function (event, ui) {
+				$(dropdown).val(ui.item.code);
+				$(link).click();
+			},
+		});
 	});
 });
 </script>";
