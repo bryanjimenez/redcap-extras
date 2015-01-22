@@ -31,22 +31,21 @@ foreach($hook_functions[$term] as $field => $details) {
 	$startup_vars[] = $field;
 }
 echo "<script type='text/javascript'>
-
-
+// ".$term."
 $(function() {
-	var disabledFields = ".json_encode($startup_vars).";
-	$(disabledFields).each(function() {
+	var autocompleteFields = ".json_encode($startup_vars).";
+	$(autocompleteFields).each(function() {
 		var tr = $('tr[sq_id='+this+']');
 		
 		// Replace term from note
 		var note = $('div.note', tr);
 		$(note).text($(note).text().replace('".$term."', ''));
 
-        //var dropdown = $(this).closest('td').find('select');
         var dropdown = $('select', tr);
         var link = document.createElement('a');
         var input = document.createElement('input');
 
+		// Insert html objects and bind events
         $(dropdown).after(input);
         $(input).after(link);
 
@@ -57,15 +56,16 @@ $(function() {
 
         $(input).attr('class', 'x-form-text x-form-field').hide();
 
-
+		// Extract list options from dropdown for jquery autocomplete
         var list = $(dropdown).children();
         var x = [];
 
-        for (var i = list.length; i-->0 ;)
-        x.unshift({
-            value: list[i].innerHTML,
-            code: list[i].value
-        });
+        for (var i = list.length; i-->0 ;){
+			x.unshift({
+				value: list[i].innerHTML,
+				code: list[i].value
+			});
+		}
 
         $(input).ui_autocomplete({
             source: x,
