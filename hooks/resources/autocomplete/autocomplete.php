@@ -14,7 +14,7 @@ error_log("Staring $term");
 
 // Assumes we have populated the hook_functions array
 if (!isset($hook_functions)) {
-	echo "ERROR: Missing check for hook_functions array in " . __FILE__ . ".  Check your global hook for redcap_survey_page.";
+	echo "ERROR: Missing check for hook_functions array in " . __FILE__ . ".  Check your global hook for redcap_data_entry_form.";
 	return;
 }
 
@@ -49,7 +49,8 @@ $(function() {
 		$(dropdown).after(input);
 		$(input).after(link);
 		
-		$(link).text(' Lookup 🔎').bind('click', function (event) {
+		$(link).text(' 🔎').bind('click', function (event) {
+			$(link).text($(link).text()==' 🔎' ? ' ✘' : ' 🔎');
 			$(dropdown).toggle();
 			$(input).toggle().val('').focus();
 		}).css('cursor', 'pointer');
