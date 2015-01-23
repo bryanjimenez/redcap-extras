@@ -1,2 +1,14 @@
 .DS_Store
 .vagrant/
+
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip 
