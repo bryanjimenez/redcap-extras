@@ -31,7 +31,7 @@ foreach($hook_functions[$term] as $field => $details) {
 	$startup_vars[] = $field;
 }
 echo "<script type='text/javascript'>
-// ".$term."
+
 $(function() {
 	var autocompleteFields = ".json_encode($startup_vars).";
 	$(autocompleteFields).each(function() {
@@ -49,8 +49,8 @@ $(function() {
 		$(dropdown).after(input);
 		$(input).after(link);
 		
-		$(link).text(' 🔎').bind('click', function (event) {
-			$(link).text($(link).text()==' 🔎' ? ' ✘' : ' 🔎');
+		$(link).text(' ↵').attr('title','Autocomplete').bind('click', function (event) {
+			$(link).text($(link).text()==' ↵' ? ' ✘' : ' ↵');
 			$(dropdown).toggle();
 			$(input).toggle().val('').focus();
 		}).css('cursor', 'pointer');
