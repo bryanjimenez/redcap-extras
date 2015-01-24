@@ -1,7 +1,7 @@
 <?php
 	
 /**
-	This is a hook utility function that converts input fields to autocomplete fields when they have
+	This is a hook utility function that converts dropdown fields to jQuery autocomplete fields when they have
 	@AUTOCOMPLETE in the notes area.
 
 	Bryan Jimenez
