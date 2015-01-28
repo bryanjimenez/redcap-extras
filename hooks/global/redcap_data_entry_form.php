@@ -14,9 +14,19 @@ if (!isset($hook_functions)) {
 	}
 }
 /*
-@AUTOCOMPLETE tries to display a preview of uploaded files
+@AUTOCOMPLETE
 */
 $file = dirname(APP_PATH_DOCROOT).DS.'hooks/resources/autocomplete/autocomplete.php';
+if (file_exists($file)) {
+	include_once $file;
+} else {
+	error_log ("Unable to include required file $file while in " . __FILE__);
+}
+
+/*
+@TOOLTIP
+*/
+$file = dirname(APP_PATH_DOCROOT).DS.'hooks/resources/tooltip/tooltip.php';
 if (file_exists($file)) {
 	include_once $file;
 } else {
