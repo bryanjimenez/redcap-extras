@@ -10,7 +10,7 @@
 
 $term = '@AUTOCOMPLETE';
 
-error_log("Staring $term");
+error_log("Starting $term");
 
 // Assumes we have populated the hook_functions array
 if (!isset($hook_functions)) {
@@ -30,6 +30,8 @@ $startup_vars = array();
 foreach($hook_functions[$term] as $field => $details) {
 	$startup_vars[] = $field;
 }
+
+# Step 2 - Inject Javascript
 echo "<script type='text/javascript'>
 
 $(function() {
