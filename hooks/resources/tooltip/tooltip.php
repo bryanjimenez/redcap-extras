@@ -1,14 +1,19 @@
 <?php
 	
 /**
-	This is a hook utility function that converts dropdown fields to jQuery autocomplete fields when they have
-	@AUTOCOMPLETE in the notes area.
+	This is a hook function that adds a tooltip to field that have
+	@TOOLTIP in the notes area.
+	
+	Example:
+	
+	@TOOLTIP=The message that will be used in the tooltip
+
 
 	Bryan Jimenez
 	University of Miami
 **/
 
-$term = '@AUTOCOMPLETE';
+$term = '@TOOLTIP';
 
 error_log("Starting $term");
 
@@ -17,6 +22,7 @@ if (!isset($hook_functions)) {
 	echo "ERROR: Missing check for hook_functions array in " . __FILE__ . ".  Check your global hook for redcap_data_entry_form.";
 	return;
 }
+
 
 if (!isset($hook_functions[$term])) {
 	// Skip this page - term not called
@@ -31,11 +37,15 @@ foreach($hook_functions[$term] as $field => $details) {
 	$startup_vars[] = $field;
 }
 
-# Step 2 - Inject Javascript
-echo "<!-- AUTOCOMPLETE -->\n";
-echo "<script type='text/javascript'>\n";
-readfile(dirname(__FILE__) . DS . "autocomplete.js");
-echo "$(function(){REDCap_Autocomplete(".json_encode($hook_functions[$term]).");});\n";
-echo "</script>\n";
+# Step 2 - Inject CSS
+echo "<!-- TOOLTIP -->\n";
+echo "<style type='text/css'>\n";
+readfile(dirname(__FILE__) . DS . "tooltip.css");
+echo "</style>\n";
 
+# Step 3 - Inject Javascript
+echo "<script type='text/javascript'>\n";
+readfile(dirname(__FILE__) . DS . "tooltip.js");
+echo "$(function(){REDCap_Tooltip(".json_encode($hook_functions[$term]).");});\n";
+echo "</script>\n";
 ?>
