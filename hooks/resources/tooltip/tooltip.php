@@ -27,13 +27,13 @@ if (!isset($hook_functions)) {
 }
 
 // FIX this later
-/*
+
 if (!isset($hook_functions[$term])) {
 	// Skip this page - term not called
 	error_log ("Skipping - no $term functions called.");
 	return;
 } 
-*/
+
 
 # Step 1 - Create array of fields to hide and inject
 $startup_vars = array();
@@ -42,34 +42,9 @@ foreach($hook_functions[$term] as $field => $details) {
 }
 
 # Step 2 - Inject Javascript
-echo "<script type='text/javascript'>
-$(function REDCap_Show_Tooltip(selector) {
-	$(selector).each(function(){
-		var $this = $(this);
-		var tip = $this.attr('data-msg');
-		var $element = $this.parent().prev();
-		var $tooltip = $(document.createElement("span"));
-		
-		$tooltip
-			.attr("title",tip)
-			.text(" ★")
-			.css('cursor', 'pointer')
-			.hover(function(){
-						$tooltip.css('color', 'red');
-					},
-					function(){
-						$tooltip.css('color', '');
-					});
-		$tooltip.tooltip({ 
-							relative: true, 
-							effect: 'fade', 
-							position: 'center right', 
-							events: { def: "click,mouseout" }, 
-							tipClass: "tooltip" 
-						});							
-		$element.after($tooltip);
-		$this.remove();
-	});
-}(".TOOLTIP"));
-</script>";
+echo "<!-- TOOLTIP -->\n";
+echo "<script type='text/javascript'>\n";
+readfile(dirname(__FILE__) . DS . "tooltip.js");
+echo "$(function(){REDCap_Tooltip(".json_encode($hook_functions[$term]).");});\n";
+echo "</script>\n";
 ?>

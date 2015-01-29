@@ -36,7 +36,8 @@ foreach ($elements as $k => $element) {
 		// Using a strpos search initially as it is faster than regex search
 		if (strpos($note,'@') !== false) {
 			// We have a potential match - lets get all terms (separated by spaces)
-			preg_match_all('/@\S+/', $note, $matches);
+//			preg_match_all('/@\S+/', $note, $matches);
+			preg_match_all('/@(.*?)((?=\s?@)|(?=\s?$))/', $note, $matches);
 			if ($matches) {
 				// We have found matches - let's parse them
 				$matches = reset($matches);
@@ -48,7 +49,8 @@ foreach ($elements as $k => $element) {
 							isset($hook_functions[$hook_name]) ? $hook_functions[$hook_name] : array(),
 							array($element['field'] => array(
 								'elements_index' => $k,
-								'params' => $hook_details)
+								'params' => $hook_details,
+								'term' => $hook_name)
 							)
 					);
 				}
