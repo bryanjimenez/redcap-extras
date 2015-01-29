@@ -37,7 +37,7 @@ foreach ($elements as $k => $element) {
 		if (strpos($note,'@') !== false) {
 			// We have a potential match - lets get all terms (separated by spaces)
 //			preg_match_all('/@\S+/', $note, $matches);
-			preg_match_all('/@(.*?)((?=\s?@)|(?=\s?$))/', $note, $matches);
+			preg_match_all('/(@\w+)(=.*?\S+?((?=\s*@)|(?=\s*$)))?/', $note, $matches);
 			if ($matches) {
 				// We have found matches - let's parse them
 				$matches = reset($matches);
