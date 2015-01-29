@@ -15,15 +15,15 @@ function REDCap_Tooltip(fields) {
       $tooltip
         .attr("title",data.params)
         .text(" ★")
-        .css("cursor", "pointer")
-        .css('text-decoration', 'none');
-
+        .addClass("toolTipIcon");
+        .addClass("toolTipIcon");
+        
       $tooltip.tooltip({
         relative: true,
         effect: "fade",
         position: "center right",
         events: { def: "click,mouseout" },
-        tipClass: "tooltip"
+        tipClass: "toolTipBox"
       });
     }else{
       console.warn(key+" missing parameters in "+data.term);

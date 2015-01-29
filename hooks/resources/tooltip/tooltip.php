@@ -6,11 +6,8 @@
 	
 	Example:
 	
-	@TOOLTIP="The message that will be used in the tooltip"   //TODO
-	
-	or
-	
-	<div class="TOOLTIP" data-msg="The message that will be used in the tooltip"/>
+	@TOOLTIP=The message that will be used in the tooltip
+
 
 	Bryan Jimenez
 	University of Miami
@@ -26,7 +23,6 @@ if (!isset($hook_functions)) {
 	return;
 }
 
-// FIX this later
 
 if (!isset($hook_functions[$term])) {
 	// Skip this page - term not called
@@ -41,8 +37,13 @@ foreach($hook_functions[$term] as $field => $details) {
 	$startup_vars[] = $field;
 }
 
-# Step 2 - Inject Javascript
+# Step 2 - Inject CSS
 echo "<!-- TOOLTIP -->\n";
+echo "<style type='text/css'>\n";
+readfile(dirname(__FILE__) . DS . "tooltip.css");
+echo "</style>\n";
+
+# Step 3 - Inject Javascript
 echo "<script type='text/javascript'>\n";
 readfile(dirname(__FILE__) . DS . "tooltip.js");
 echo "$(function(){REDCap_Tooltip(".json_encode($hook_functions[$term]).");});\n";
