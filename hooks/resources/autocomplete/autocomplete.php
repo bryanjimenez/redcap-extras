@@ -31,7 +31,13 @@ foreach($hook_functions[$term] as $field => $details) {
 	$startup_vars[] = $field;
 }
 
-# Step 2 - Inject Javascript
+# Step 2 - Inject CSS
+echo "<!-- AUTOCOMPLETE -->\n";
+echo "<style type='text/css'>\n";
+readfile(dirname(__FILE__) . DS . "autocomplete.css");
+echo "</style>\n";
+
+# Step 3 - Inject Javascript
 echo "<!-- AUTOCOMPLETE -->\n";
 echo "<script type='text/javascript'>\n";
 readfile(dirname(__FILE__) . DS . "autocomplete.js");
