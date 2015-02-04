@@ -1,0 +1,20 @@
+div.my-autocomplete {
+  display: block;
+  width: 308px;
+}
+
+select.my-autocomplete {
+  width:178px;
+}
+
+input.my-autocomplete {
+  width:170px;
+}
+
+img.my-autocomplete {
+  vertical-align: middle;
+}
+
+button.my-autocomplete {
+  margin-left: 5px;
+}
