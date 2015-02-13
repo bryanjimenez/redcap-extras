@@ -65,7 +65,7 @@ function REDCap_Autocomplete(fields){
 			select: function (event, ui) {
 				$dropdown.val(ui.item.code);
 				$button.click();
-			},
+			}
 		});
 
 		// Replace term from note
