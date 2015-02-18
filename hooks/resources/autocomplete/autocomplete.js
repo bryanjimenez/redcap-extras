@@ -49,12 +49,12 @@ function REDCap_Autocomplete(fields){
     var list = $dropdown.children();
     var x = [];
     
-		for (var i = 0; i<list.length; i++){
-		  x.push({
-		    value: list[i].innerHTML,
-		    code: list[i].value
-		  });
-		}
+    for (var i = 0; i<list.length; i++){
+      x.push({
+        value: list[i].innerHTML,
+        code: list[i].value
+      });
+    }
 		
     // jqueryui autocomplete
     $input.ui_autocomplete({
@@ -65,9 +65,9 @@ function REDCap_Autocomplete(fields){
         $button.click();
         $dropdown.change();
       }
-		});
-
-		// Replace term from note
-		$note.text($note.text().replace(data.term, ''));
-	});
+    });
+    
+    // Replace term from note
+    $note.text($note.text().replace(data.term, ''));
+  });
 }
