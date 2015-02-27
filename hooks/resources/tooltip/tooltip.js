@@ -1,4 +1,6 @@
 function REDCap_Tooltip(fields) {
+  var imgHelp = "../Resources/images/help.png";
+  
   $.each(fields,function(key,data){
     // skip if there is no tooltip message for the function
     if(data.params){
@@ -10,12 +12,16 @@ function REDCap_Tooltip(fields) {
       
       var $element = $note.prev();
       var $tooltip = $(document.createElement("a"));
+      var $img = $(document.createElement('img'));
+
       $element.after($tooltip);
+      $tooltip.append($img);
       
       $tooltip
         .attr("title",data.params)
-        .text(" ★")
         .addClass("toolTipIcon");
+      
+      $img.attr("src", imgHelp);
       
       $tooltip.tooltip({
         relative: true,
