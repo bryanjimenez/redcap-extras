@@ -44,6 +44,9 @@ function REDCap_Autocomplete(fields){
         $input.toggle().val('').focus();
       });
     $input.hide();
+    // Uncomment line below to default to autocomplete instead of dropdown
+    //$button.click();
+    
     
     // Extract options from dropdown for jquery autocomplete
     var list = $dropdown.children();
