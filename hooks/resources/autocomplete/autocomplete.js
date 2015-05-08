@@ -27,7 +27,7 @@ function REDCap_Autocomplete(fields){
     $img.addClass("my-autocomplete");
     
     // Insert html objects
-    $('td.data',$tr).prepend($div);
+    $('span',$tr).prepend($div);
     $div.append($dropdown);
     $dropdown.after($input);
     $input.after($button);
